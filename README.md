@@ -1,1 +1,0 @@
-# IntegraTestTask
