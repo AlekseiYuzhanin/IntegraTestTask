@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-ROOT_URLCONF = 'Django.urls'
+ROOT_URLCONF = 'server.urls'
 
 TEMPLATES = [
     {
