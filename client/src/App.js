@@ -7,7 +7,7 @@ function App() {
   const [sortType, setSortType] = useState('');
   const [randomFilm,setRandomFilm] = useState([]);
 
-  useEffect(() => {
+  const fetchRandomFilm = () => {
     axios.get('http://127.0.0.1:8000/api/movies/random')
       .then(response => {
         setRandomFilm(response.data);
@@ -15,7 +15,7 @@ function App() {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  };
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/movies/')
@@ -66,7 +66,11 @@ function App() {
 
   return (
     <div className='App'>
-      <div className='randomMovie'>
+      <div style={{display: 'flex', gap: '20px', paddingLeft: '10px'}}>
+        <button className='btn' onClick={fetchRandomFilm}>Случайный фильм</button>
+      </div>
+      {randomFilm != 0 &&
+      <div style={{border: '1px solid teal',marginTop: "20px"}}>
       <h2>{randomFilm.title}</h2>
       <p>Rating: {randomFilm.rating}</p>
       <p>
@@ -75,6 +79,7 @@ function App() {
         ))}
       </p>
       </div>
+      }
       <div style={{display: 'flex', gap: '20px', paddingLeft: '10px'}}>
         <button className='btn' onClick={sortByGenre}>Сортировка по жанру</button>
         <button className='btn' onClick={sortByRating}>Сортировка по возрастанию рейтинга</button>
